@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:25:56 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/20 14:15:39 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:52:15 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,27 @@ void	try_cmd(char **cmd)
 {
 	char	**path;
 	char	*str;
+	pid_t	pid;
 	int		i;
 
 	str = getenv("PATH");
 	if (str)
 	{
 		path = ft_split(str, ':');
+		pid = fork();
 		i = 0;
-		while (path && path[i])
+		if (pid == 0)
 		{
-			path[i] = ft_strcat_m(path[i], cmd[0]);
-			if (path[i] && !execve(path[i], cmd, environ))
-				break ;
-			i++;
+			while (path && path[i])
+			{
+				path[i] = ft_strcat_m(path[i], cmd[0]);
+				if (path[i] && !execve(path[i], cmd, environ))
+					return ;
+				i++;
+			}
 		}
+		else
+			waitpid(pid, NULL, 0);
 		free_all(path);
 	}
 	return ; 

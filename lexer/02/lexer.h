@@ -18,6 +18,9 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/wait.h>
+
+# define WHITESPACES "\t\n\v\f\r "
 
 typedef enum    e_type
 {
@@ -50,6 +53,13 @@ typedef struct  s_token
 	t_err			err;
     struct s_token  *nxt;    
 }   t_token;
+
+typedef struct  s_command
+{
+    char                **token;
+    t_err               err;
+    struct s_command    *nxt;
+}   t_command;
 
 ////////////////////////////////////////////////////////////////////////////////
 
