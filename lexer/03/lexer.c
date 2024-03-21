@@ -12,13 +12,13 @@
 
 #include "lexer.h"
 
-s_command	*chunk_one_cmd(char *line, int *i)
+t_command	*chunk_one_cmd(char *line, int *i)
 {
-	s_command	*dst;
+	t_command	*dst;
 	char		*tmp;
 	int			j;
 
-	dst = ft_calloc(1, sizeof(s_command));
+	dst = ft_calloc(1, sizeof(t_command));
 	if (dst)
 	{
 		j = 0;
@@ -26,7 +26,7 @@ s_command	*chunk_one_cmd(char *line, int *i)
 			j++;
 		tmp = ft_strndup(line, j);
 		if (tmp)
-			dst->token = ft_split(tmp, WHITESPACES);
+			dst->token = quotes_split(tmp, WHITESPACES);
 		else
 			dst->err = __malloc;
 		free(tmp);
@@ -35,10 +35,10 @@ s_command	*chunk_one_cmd(char *line, int *i)
 	return (dst);
 }
 
-s_command	*lexer(char *line)
+t_command	*lexer(char *line)
 {
-	s_command	*lst;
-	s_command	*tmp;
+	t_command	*lst;
+	t_command	*tmp;
 	int			i;
 
 	lst = NULL;
