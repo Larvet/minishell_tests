@@ -26,12 +26,13 @@ int main(void)
     str = readline("$> ");
     while (str)
     {
-        add_history(str);
+        add_history(str);	// check la string
         tmp = lexer(str);
         print_lst(tmp);
         free(tmp);
         free(str);
         str = readline("$> ");
     }
+	clear_history();
     return (0);
 }

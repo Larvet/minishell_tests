@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:26:20 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/21 16:27:25 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:59:55 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define WHITESPACES "\t\n\v\f\r "
 # define SEPARATORS "\t\n\v\f\r <>|"
+# define SEPCHARS "<>|"
 
 typedef enum    e_type
 {
@@ -80,8 +81,8 @@ void	tokenize_redir(t_token *token, char *line, int *i);
 void	tokenize_pipe(t_token *token, char *line, int *i);
 
 /***/// token_fonctions2.c
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *src, int n);
+//size_t	ft_strlen(char *str);
+//char	*ft_strndup(char *src, int n);
 void	tokenize_str(t_token *token, char *line, int *i);
 void	tokenize_word(t_token *token, char *line, int *i);
 void	tokenize_error(t_token *token);
@@ -94,6 +95,10 @@ void	lstclear(t_command *lst);
 // static void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 
+/***/// ft_strndup.c
+size_t	ft_strlen(char *str);
+char	*ft_strndup(char *src, size_t n);
+
 /***/// substitute_var.c
 void	substitute_var(t_token *token);
 
@@ -101,10 +106,14 @@ void	substitute_var(t_token *token);
 int     is_in_str(char *str, char c);
 
 /***/// quotes_split.c
-char    **ft_split(char const *str, char *sep);
+char    **quotes_split(char const *str, char *sep);
 
 /***/// free_all.c
 void    free_all(char **split);
+
+/***/// print_error.c
+// static char	*ft_strcat_m(char *s1, char *s2);
+void	print_error(char *str);
 
 // is_sep strndup 
 

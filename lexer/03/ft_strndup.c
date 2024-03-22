@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 16:51:06 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/22 17:02:22 by locharve         ###   ########.fr       */
+/*   Created: 2024/03/22 15:51:25 by locharve          #+#    #+#             */
+/*   Updated: 2024/03/22 15:58:08 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_command	*lexer(char *line)
+size_t	ft_strlen(char *str)
 {
-	t_command	*lst;
-	char		**split;
-	int			i;
+	int	i;
 
-	lst = NULL;
-	split = quotes_split(line, WHITESPACES);
 	i = 0;
-	while (split && split[i])
-	{
-		printf("|%s|\n", split[i]);
+	while (str[i])
 		i++;
-	}
-	if (split)
-		free_all(split);
-/*	while (line && line[i])
+	return (i);
+}
+
+char	*ft_strndup(char *src, size_t n)
+{
+	char	*dst;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(src);
+	if (n < len)
+		len = n;
+	dst = ft_calloc(len + 1, sizeof(char));
+	if (dst)
 	{
-		while (is_space(line[i]))
-			i++;
-		if (line[i])
+		i = 0;
+		while (i < len)
 		{
-			
+			dst[i] = src[i];
+			i++;
 		}
 	}
-*/	return (lst);
+	return (dst);
 }

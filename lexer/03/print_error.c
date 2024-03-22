@@ -1,41 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 16:51:06 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/22 17:02:22 by locharve         ###   ########.fr       */
+/*   Created: 2024/03/22 16:12:45 by locharve          #+#    #+#             */
+/*   Updated: 2024/03/22 16:18:04 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_command	*lexer(char *line)
+static char	*ft_strcat_m(char *s1, char *s2)
 {
-	t_command	*lst;
-	char		**split;
-	int			i;
+	char	*dst;
+	size_t	len;
+	size_t	i;
+	size_t	j;
 
-	lst = NULL;
-	split = quotes_split(line, WHITESPACES);
-	i = 0;
-	while (split && split[i])
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	dst = ft_calloc(len, sizeof(char));
+	if (dst)
 	{
-		printf("|%s|\n", split[i]);
-		i++;
-	}
-	if (split)
-		free_all(split);
-/*	while (line && line[i])
-	{
-		while (is_space(line[i]))
-			i++;
-		if (line[i])
+		i = 0;
+		while (s1[i])
 		{
-			
+			dst[i] = s1[i];
+			i++;
+		}
+		j = 0;
+		while (s2[j])
+		{
+			dst[i + j] = s2[j];
+			j++;
 		}
 	}
-*/	return (lst);
+	return (dst);
+}
+
+void	print_error(char *str)
+{
+	char	*err;
+
+	err = ft_strcat_m("ERROR\t", str);
+	if (err)
+		write(2, err, ft_strlen(err));
+	free(err);
+	return ;
 }
