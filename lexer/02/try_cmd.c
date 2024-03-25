@@ -49,6 +49,7 @@ char	*ft_strcat_m(char *s1, char *s2)
 		}
 	}
 	free(s1);
+	//printf("%s\n", dst); ////////////////
 	return (dst);
 }
 

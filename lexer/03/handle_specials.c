@@ -64,8 +64,6 @@ int	handle_redirections(char *str, int *count)
 	int	i;
 
 	i = 1;
-	while (is_in_str(WHITESPACES, str[i]))
-		i++;
 	if (str[i] == '<' || str[i] == '>')
 		i++;
 	*count += 1;
