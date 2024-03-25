@@ -18,7 +18,7 @@ int	handle_quotes(char *str, int *count, char q)
 	*count += 1;
 	return (i);
 }
-
+/*
 int	handle_redirections(char *str, int *count, char r)
 {
 	// cas particulier : <>
@@ -58,13 +58,26 @@ int	handle_redirections(char *str, int *count, char r)
 	else if (q
 	return (i);
 }
+*/
+int	handle_redirections(char *str, int *count)
+{
+	int	i;
+
+	i = 1;
+	while (is_in_str(WHITESPACES, str[i]))
+		i++;
+	if (str[i] == '<' || str[i] == '>')
+		i++;
+	*count += 1;
+	return (i);
+}
 
 int	handle_specials(char *str, int *count)
 {
 	if (str[0] == '\'' || str[0] == '\"')
-		return (handle_quotes(str, count, str[i]));
+		return (handle_quotes(str, count, str[0]));
 	else if (str[0] == '<' || str[0] == '>')
-		return (handle_redirections(str, count, str[i]));
+		return (handle_redirections(str, count));
 	else if (str[0] == '|')
 	{
 		*count += 1;

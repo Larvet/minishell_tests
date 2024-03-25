@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:26:20 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/22 16:59:55 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:43:03 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
+# include <stdarg.h>
 
 # define WHITESPACES "\t\n\v\f\r "
 # define SEPARATORS "\t\n\v\f\r <>|"
@@ -47,6 +48,14 @@ typedef enum	e_err		// ?
 	__open_dquote,  // idem
 	__invalid
 }	t_err;
+
+typedef enum	e_redir
+{
+	__input_r,	// <
+	__input_rw,	// <>
+	__output,
+
+}	t_redir;
 
 typedef struct  s_token
 {
@@ -114,6 +123,18 @@ void    free_all(char **split);
 /***/// print_error.c
 // static char	*ft_strcat_m(char *s1, char *s2);
 void	print_error(char *str);
+
+/***/// ft_strjoin_va.c
+// static ...
+char    *ft_strjoin_va(char *str, ...);
+
+/***/// ft_strchr.c
+char    *ft_strchr(const char *s, int c);
+
+/***///  handle_specials.c
+int		handle_quotes(char *str, int *count, char q);
+int		handle_redirections(char *str, int *count);
+int		handle_specials(char *str, int *count);
 
 // is_sep strndup 
 

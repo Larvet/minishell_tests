@@ -25,7 +25,7 @@ static int	count_words(char *str, char *sep)
 			count++;
 			i++;
 		}
-		// i++;
+		i++;
 	}
 	if (i > 0 && !is_in_str(sep, str[i - 1]))
 		count++;

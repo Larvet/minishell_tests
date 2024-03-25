@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 15:51:25 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/25 16:20:09 by locharve         ###   ########.fr       */
+/*   Created: 2023/10/30 12:51:29 by locharve          #+#    #+#             */
+/*   Updated: 2023/11/04 21:01:16 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-size_t	ft_strlen(char *str)
+static int	ft_isascii(char c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
+}
+
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strndup(char *src, size_t n)
-{
-	char	*dst;
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(src);
-	if (n < len)
-		len = n;
-	dst = ft_calloc(len + 1, sizeof(char));
-	if (dst)
+	if (!ft_isascii(c))
+		return ((char *)s);
+	while (s[i] != '\0')
 	{
-		i = 0;
-		while (i < len)
-		{
-			dst[i] = src[i];
-			i++;
-		}
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
 	}
-	return (dst);
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (NULL);
 }
