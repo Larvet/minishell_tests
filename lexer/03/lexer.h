@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:26:20 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/25 17:43:03 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:30:23 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ char    *ft_strjoin_va(char *str, ...);
 
 /***/// ft_strchr.c
 char    *ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
 
 /***///  handle_specials.c
 int		handle_quotes(char *str, int *count, char q);
