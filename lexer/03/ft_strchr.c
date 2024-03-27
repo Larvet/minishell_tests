@@ -25,6 +25,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	if (!ft_isascii(c))
 		return ((char *)s);
 	while (s[i] != '\0')
@@ -43,6 +45,8 @@ char	*ft_strrchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	if (!ft_isascii(c))
 		return ((char *)s);
 	while (s[i])

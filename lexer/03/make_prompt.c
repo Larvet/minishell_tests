@@ -1,91 +1,38 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_prompt.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 15:17:27 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/26 17:41:53 by locharve         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "lexer.h"
 
-char	**init_colors(char **str)
-{
-	str[0] = ft_strndup(); // blanc
-	str[1] = ft_strndup(); // vert
-	str[2] = ft_strndup(); // bleu ?
-}
+#include <readline/readline.h>
 
 char	*make_prompt(void)
 {
-	char	*logname;
-	char	*at;
-	char	*s_manager;
-	char	*space;
-	char	*pwd;
-	char	*prompt;
-	char	*end;
+	char	*session_m;
+	char	*result;
 
-	char	*color[3];
+	session_m = getenv("SESSION_MANAGER");
+	session_m = ft_strchr(session_m, '/');
+	session_m = ft_strndup(session_m, ft_strchr(session_m, '.') - session_m);
+	if (!session_m)
+		return (NULL);
 
-	// colors
-
-	logname = getenv("LOGNAME");
-	logname = ft_strndup(logname, ft_strlen(logname));
-	if (!logname)
-		return (NULL);
-	at = ft_strndup("@", 1);
-	if (!at)
-	{
-		free(logname);
-		return (NULL);
-	}
-	s_manager = getenv("SESSION_MANAGER");
-	s_manager = ft_strchr(s_manager, '/');
-	s_manager = ft_strndup(s_manager,  ft_strchr(s_manager, '.') - s_manager);
-	if (!s_manager)
-	{
-		free(logname);
-		free(at);
-		return (NULL);
-	}
-	space = ft_strndup(" ", 1);
-	if (!space)
-	{
-		// free all
-		return (NULL);
-	}
-	pwd = ft_strrchr(getenv("PWD"), '/');
-	pwd = ft_strndup(pwd, ft_strlen(pwd));
-	if (!pwd)
-	{
-		// free all
-		return (NULL);
-	}
-	end = ft_strndup(" $> ", 4);
-	if (!end)
-	{
-		// free all
-		return (NULL);
-	}
-	prompt = ft_strjoin_va(logname, at, s_manager, space, pwd, end, NULL); // error handling
-	//free(s_manager);
+	result = ft_strjoin_va("", "\033[0;35m", getenv("LOGNAME"),
+			"@", session_m, " ", "\033[0;32m",
+			ft_strrchr(getenv("PWD"), '/'), "/",
+			"\033[0;33m", " $> ", "\033[0;37m", NULL);
 	
-	return (prompt);
+	free(session_m);
+	return (result);
 }
 
 int	main(void)
 {
-	char	*prompt;
+	char	*prompt = make_prompt();
+	char	*str = readline(prompt);
 
-	prompt = make_prompt();
-	if (prompt)
+	while (str)
 	{
-		printf("%s\n", prompt);
-		free(prompt);
+		free(str);
+		str = readline(prompt);
 	}
+	// printf("%s\n", str);
+	// free(str);
 	return (0);
 }
