@@ -1,6 +1,16 @@
-#include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_prompt.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/27 14:51:35 by locharve          #+#    #+#             */
+/*   Updated: 2024/03/27 14:54:48 by locharve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <readline/readline.h>
+#include "lexer.h"
 
 char	*make_prompt(void)
 {
@@ -12,16 +22,14 @@ char	*make_prompt(void)
 	session_m = ft_strndup(session_m, ft_strchr(session_m, '.') - session_m);
 	if (!session_m)
 		return (NULL);
-
 	result = ft_strjoin_va("", "\033[0;35m", getenv("LOGNAME"),
 			"@", session_m, " ", "\033[0;32m",
 			ft_strrchr(getenv("PWD"), '/'), "/",
 			"\033[0;33m", " $> ", "\033[0;37m", NULL);
-	
 	free(session_m);
 	return (result);
 }
-
+/*
 int	main(void)
 {
 	char	*prompt = make_prompt();
@@ -32,7 +40,6 @@ int	main(void)
 		free(str);
 		str = readline(prompt);
 	}
-	// printf("%s\n", str);
-	// free(str);
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:26:20 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/26 17:30:23 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:06:33 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define WHITESPACES "\t\n\v\f\r "
 # define SEPARATORS "\t\n\v\f\r <>|"
-# define SEPCHARS "<>|"
+# define ALL_SPECIAL "\"\'<>|"
 
 typedef enum    e_type
 {
@@ -112,6 +112,7 @@ char	*ft_strndup(char *src, size_t n);
 void	substitute_var(t_token *token);
 
 /***/// is_in_str.c
+int		is_digit(char c);
 int     is_in_str(char *str, char c);
 
 /***/// quotes_split.c
@@ -133,9 +134,11 @@ char    *ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 
 /***///  handle_specials.c
-int		handle_quotes(char *str, int *count, char q);
-int		handle_redirections(char *str, int *count);
-int		handle_specials(char *str, int *count);
+int		handle_quotes(char const *str, char q);
+int		handle_redirections(char const *str);
+int		handle_specials(char const *str);
+int		handle_fd_redir(char const *str);
+int		handle_word(char const *str, char *sep, int *i);
 
 // is_sep strndup 
 

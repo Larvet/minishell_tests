@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:34:00 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/21 13:59:26 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:50:29 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	main(void)
 	//if (!prompt)
 	//	return (1);
 	//prv = NULL;
-	str = readline("\033[0;31m:>\033[0m");
+	str = readline("\001\e[0;31m:>\002");
+	//str = readline(">::::::");
 	while (str)
 	{
 		//if (prv && ft_strcmp
@@ -62,7 +63,8 @@ int	main(void)
 		if (str[0])
 			printf("\n");
 		free(str);
-		str = readline("\033[0;31m:>\033[0m");
+		str = readline("\033[0;31m:>\002");
+		//str = readline(">::::::");
 	}
 	free(rl_prompt);
 	
