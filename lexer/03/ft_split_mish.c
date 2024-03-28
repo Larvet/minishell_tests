@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_mish.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/28 15:56:21 by locharve          #+#    #+#             */
+/*   Updated: 2024/03/28 15:56:22 by locharve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexer.h"
 
 static int	count_words(char const *str, char *sep)
@@ -81,7 +93,7 @@ void	free_strtab(char **strtab)
 	return ;
 }
 
-char	**ft_split(char const *str, char *sep)
+char	**ft_split_mish(char const *str, char *sep)
 {
 	char	**dst;
 	int		count;
@@ -110,7 +122,7 @@ char	**ft_split(char const *str, char *sep)
 	}
 	return (dst);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	char	**tab;
@@ -133,3 +145,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+*/

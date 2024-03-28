@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:26:20 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/27 18:06:33 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:59:30 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,10 @@ int		handle_redirections(char const *str);
 int		handle_specials(char const *str);
 int		handle_fd_redir(char const *str);
 int		handle_word(char const *str, char *sep, int *i);
+
+/***/// ft_split_mish.c
+void	free_strtab(char **strtab);
+char	**ft_split_mish(char const *str, char *sep);
 
 // is_sep strndup 
 

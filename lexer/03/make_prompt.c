@@ -6,7 +6,7 @@
 /*   By: locharve <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:51:35 by locharve          #+#    #+#             */
-/*   Updated: 2024/03/27 14:54:48 by locharve         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:12:55 by locharve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,3 @@ char	*make_prompt(void)
 	free(session_m);
 	return (result);
 }
-/*
-int	main(void)
-{
-	char	*prompt = make_prompt();
-	char	*str = readline(prompt);
-
-	while (str)
-	{
-		free(str);
-		str = readline(prompt);
-	}
-	return (0);
-}
-*/

@@ -67,21 +67,39 @@ int	handle_fd_redir(char const *str)
 	long long	check;
 	int			i;
 	int			j;
+	int			err;
 
+	err = 0;
 	check = ft_atoll(str);
 	if (check < 0 || check > 1023)
 	{
-		print_error(": Bad file descriptor\n"); //////////
-		return (-1);
+		err = 1;
+		//print_error(": Bad file descriptor\n"); //////////
+		//return (-1);
 	}
 	i = 0;
 	while (is_digit(str[i]))
 		i++;
 	j = 0;
-	if (j < 2 && (str[i + j] == '<' || str[i + j] == '>'))
-		j++;
+	if (str[i] == '<' || str[i] == '>')
+	{
+		while (j < 2 && (str[i + j] == '<' || str[i + j] == '>'))
+			j++;
+		if (err)
+			return (-1); /////////////////
+	}
+	else if (!is_in_str(WHITESPACES, str[i]))
+	{
+		while (!is_in_str(WHITESPACES, str[i + j]))
+			j++;
+	}
 	i += j;	//////// reconnaissance de &| ?
 	return (i);
+}
+
+int	handle_digit(char const *str)
+{
+	
 }
 
 int	handle_word(char const *str, char *sep, int *i)
